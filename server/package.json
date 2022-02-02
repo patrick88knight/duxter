@@ -1,0 +1,24 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "npx ts-node index.ts  ",
+        "start2": "node index.ts ",
+        "build": "cd client && npm install && npm run build"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "engines": {
+        "node": "16.x"
+    },
+    "dependencies": {
+
+    },
+    "devDependencies": {
+
+    }
+}
