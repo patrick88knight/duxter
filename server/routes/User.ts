@@ -6,6 +6,7 @@ import UserModel from "../models/User";
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {BAD_REQUEST, CREATED, OK} = StatusCodes;
+require('dotenv').config()
 const secret = process.env.SECRET_OR_KEY
 
 const signup = async (req: Request, res: Response) => {
