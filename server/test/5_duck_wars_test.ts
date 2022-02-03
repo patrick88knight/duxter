@@ -8,7 +8,7 @@ const {Builder, By, until,} = require('selenium-webdriver')
 const chai = require('chai');
 const assert = chai.assert;
 
-describe('Filter performance', function () {
+describe('Duck Wars', function () {
 
     // @ts-ignore
     this.timeout(300000)
@@ -55,7 +55,6 @@ describe('Filter performance', function () {
     })
 
     it('Authorization', async function () {
-        await takeScreenshot(driver, "6.png")
         await driver.switchTo().window(getAllWindowHandles[0])
         await driver.sleep(ActionTimeout.larges)
         await action(driver, By.css(".login-page__authorization_method_first_line"), ActionType.click, ActionTimeout.larges)
@@ -68,12 +67,10 @@ describe('Filter performance', function () {
     })
 
     it('Go to page: Marketplace', async () => {
-        await takeScreenshot(driver, "7.png")
         await driver.navigate().to(BASE_WAVESDUCKS_URL + "marketplace")
         await driver.sleep(ActionTimeout.larges)
         await driver.sleep(ActionTimeout.larges)
         await driver.sleep(ActionTimeout.larges)
-        await takeScreenshot(driver, "15.png")
     })
 
     it('Go to page: Play To Earn', async () => {
@@ -81,23 +78,31 @@ describe('Filter performance', function () {
         await driver.sleep(ActionTimeout.larges)
         await driver.findElement(By.linkText("Play To Earn")).click()
         await driver.sleep(ActionTimeout.normal)
-        await takeScreenshot(driver, "16.png")
+        await takeScreenshot(driver, "15.png")
     })
 
     it('Start game', async () => {
-        await driver.switchTo().frame(1)
-        await driver.sleep(ActionTimeout.normal)
+        await driver.switchTo().frame(0)
+        await driver.sleep(ActionTimeout.larges * 10)
+        await takeScreenshot(driver, "16-0.png")
+        // const bodyHtml = await driver.findElement(By.css("html")).getAttribute('innerHTML')
+        // console.log("bodyHtml", bodyHtml)
         // @ts-ignore
         await action(driver, By.css(".css-1wyiskf"), ActionType.sendKeys, ActionTimeout.short, null, PASSWORD)
+        await takeScreenshot(driver, "16-1.png")
+
         await action(driver, By.css(".css-14ilpg8"), ActionType.click, ActionTimeout.short)
-        await driver.sleep(ActionTimeout.larges)
-        await driver.sleep(ActionTimeout.larges)
+        await takeScreenshot(driver, "16-2.png")
+
+        await driver.sleep(ActionTimeout.larges * 3)
         await action(driver, By.css(".css-1wnx2ve"), ActionType.click, ActionTimeout.short)
-        await driver.sleep(ActionTimeout.larges)
+        await takeScreenshot(driver, "16-3.png")
+        await driver.sleep(ActionTimeout.larges * 3)
         await driver.switchTo().defaultContent()
-        await driver.sleep(ActionTimeout.larges)
+        await takeScreenshot(driver, "16-4.png")
+        await driver.sleep(ActionTimeout.larges * 3)
         await action(driver, By.css(".choose-collective-farm__farms__card > button"), ActionType.click, ActionTimeout.short)
-        await takeScreenshot(driver, "17.png")
+        await takeScreenshot(driver, "16-5.png")
     })
 
     after(async () => driver.quit());
