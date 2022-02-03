@@ -82,19 +82,24 @@ describe('Duck Wars', function () {
     })
 
     it('Start game', async () => {
-        await driver.switchTo().frame(0)
+        getAllWindowHandles = await driver.getAllWindowHandles()
+        await driver.switchTo().window(getAllWindowHandles[0])
+        await driver.sleep(ActionTimeout.larges * 10)
+        await driver.switchTo().frame(1) // 0 1 |
         await driver.sleep(ActionTimeout.larges * 10)
         await takeScreenshot(driver, "16-0.png")
-        // const bodyHtml = await driver.findElement(By.css("html")).getAttribute('innerHTML')
-        // console.log("bodyHtml", bodyHtml)
+        const bodyHtml = await driver.findElement(By.css("html")).getAttribute('innerHTML')
+        console.log("bodyHtml", bodyHtml)
         // @ts-ignore
         await action(driver, By.css(".css-1wyiskf"), ActionType.sendKeys, ActionTimeout.short, null, PASSWORD)
         await takeScreenshot(driver, "16-1.png")
-
+        await driver.sleep(ActionTimeout.larges * 10)
         await action(driver, By.css(".css-14ilpg8"), ActionType.click, ActionTimeout.short)
         await takeScreenshot(driver, "16-2.png")
 
-        await driver.sleep(ActionTimeout.larges * 3)
+        await driver.sleep(ActionTimeout.larges * 10)
+        await takeScreenshot(driver, "16-2-2.png")
+
         await action(driver, By.css(".css-1wnx2ve"), ActionType.click, ActionTimeout.short)
         await takeScreenshot(driver, "16-3.png")
         await driver.sleep(ActionTimeout.larges * 3)
